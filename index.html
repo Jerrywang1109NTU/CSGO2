@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO 2 汰换合同期望收益计算器</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 CS:GO 2 汰换合同期望收益计算器</h1>
+            <p class="subtitle">实时计算Trade-Up Contract的投资回报率</p>
+        </header>
+
+        <main>
+            <!-- 数据加载状态 -->
+            <div id="loading" class="loading-section">
+                <div class="spinner"></div>
+                <p>正在加载Steam市场数据...</p>
+            </div>
+
+            <!-- 主要功能区 -->
+            <div id="main-content" style="display: none;">
+                <!-- 筛选器 -->
+                <section class="filter-section">
+                    <h2>📋 选择汰换材料</h2>
+                    <div class="filter-controls">
+                        <div class="form-group">
+                            <label for="quality-select">品质等级:</label>
+                            <select id="quality-select">
+                                <option value="consumer">消费级 (Consumer Grade)</option>
+                                <option value="industrial">工业级 (Industrial Grade)</option>
+                                <option value="mil-spec">军规级 (Mil-Spec)</option>
+                                <option value="restricted">受限 (Restricted)</option>
+                                <option value="classified">保密 (Classified)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="collection-select">武器箱/收藏:</label>
+                            <select id="collection-select">
+                                <option value="">选择武器箱...</option>
+                            </select>
+                        </div>
+                        <button id="search-btn" class="btn btn-primary">搜索可用皮肤</button>
+                    </div>
+                </section>
+
+                <!-- 可选皮肤列表 -->
+                <section class="skins-section">
+                    <h2>🔫 可用皮肤列表</h2>
+                    <div id="available-skins" class="skins-grid">
+                        <p class="placeholder">请选择品质和武器箱后点击搜索</p>
+                    </div>
+                </section>
+
+                <!-- 已选择的皮肤 -->
+                <section class="selected-section">
+                    <h2>✅ 已选择的皮肤 (<span id="selected-count">0</span>/10)</h2>
+                    <div id="selected-skins" class="selected-grid">
+                        <p class="placeholder">请从上方选择10个相同品质的皮肤</p>
+                    </div>
+                    <div class="selected-actions">
+                        <button id="clear-selection-btn" class="btn btn-secondary">清空选择</button>
+                        <button id="calculate-btn" class="btn btn-success" disabled>计算期望收益</button>
+                    </div>
+                </section>
+
+                <!-- 计算结果 -->
+                <section class="results-section" id="results-section" style="display: none;">
+                    <h2>💰 期望收益分析</h2>
+                    <div class="results-summary">
+                        <div class="result-card">
+                            <h3>总投入成本</h3>
+                            <p class="result-value" id="total-cost">¥0.00</p>
+                        </div>
+                        <div class="result-card">
+                            <h3>期望产出价值</h3>
+                            <p class="result-value" id="expected-value">¥0.00</p>
+                        </div>
+                        <div class="result-card">
+                            <h3>期望收益</h3>
+                            <p class="result-value" id="profit">¥0.00</p>
+                        </div>
+                        <div class="result-card">
+                            <h3>投资回报率</h3>
+                            <p class="result-value" id="roi">0%</p>
+                        </div>
+                    </div>
+
+                    <div class="possible-outputs">
+                        <h3>🎁 可能的产出物品</h3>
+                        <table id="output-table">
+                            <thead>
+                                <tr>
+                                    <th>物品名称</th>
+                                    <th>品质</th>
+                                    <th>当前价格</th>
+                                    <th>概率</th>
+                                    <th>期望贡献</th>
+                                </tr>
+                            </thead>
+                            <tbody id="output-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>数据来源: Steam Community Market | 更新时间: <span id="last-update">--</span></p>
+            <p class="disclaimer">⚠️ 本工具仅供参考，实际交易价格可能有波动，投资需谨慎！</p>
+        </footer>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

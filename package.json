@@ -1,0 +1,27 @@
+{
+  "name": "csgo-tradeup-calculator",
+  "version": "1.0.0",
+  "description": "CS:GO 2汰换合同期望收益计算器",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8000 -o",
+    "dev": "npx http-server -p 8000 -c-1"
+  },
+  "keywords": [
+    "csgo",
+    "cs2",
+    "trade-up",
+    "calculator",
+    "steam",
+    "market"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/csgo-tradeup-calculator.git"
+  },
+  "homepage": "https://your-username.github.io/csgo-tradeup-calculator/"
+}
+
